@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PUP Energy Monitor System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+
+        <div class="sidebar-brand">
+            <h2>PUP ENERGY PORTAL</h2>
+            <p>CAMPUS MANAGEMENT SYSTEM</p>
+        </div>
+
+        <ul class="sidebar-menu">
+            <li id="menuDashboard" class="active" onclick="showDashboardView()">
+                Dashboard
+            </li>
+        </ul>
+
+        <div class="room-nav-section">
+
+            <h4>Monitored Nodes</h4>
+
+            <div class="room-list-grid" id="roomDirectory"></div>
+
+        </div>
+
+        <div class="sidebar-footer">
+            PUP San Pedro Campus
+        </div>
+
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="top-navbar">
+
+            <div class="navbar-brand-area">
+
+                <img
+                    src="pup-logo.png"
+                    alt="PUP Logo"
+                    class="pup-logo"
+                >
+
+                <h1 id="navTitle">System Dashboard</h1>
+
+            </div>
+
+            <div class="navbar-right">
+
+    <div class="clock-container">
+
+        <div id="liveDate" class="live-date">
+            May 24, 2026
+        </div>
+
+        <div id="liveClock" class="live-clock">
+            00:00:00
+        </div>
+
+        <div id="uptime" class="uptime">
+            Uptime: 0s
+        </div>
+
+    </div>
+
+    <div class="user-role">
+        User Role: Campus Admin
+    </div>
+
+</div>
+
+        </header>
+
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboardView" class="view-container active-view">
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+                    <h4>Current Power Draw</h4>
+                    <p id="globalPowerDraw">0.00 kW</p>
+                </div>
+
+                <div class="summary-card">
+                    <h4>Electricity Wasted</h4>
+                    <p id="globalWasted" class="danger-text">0.00 kW</p>
+                </div>
+
+                <div class="summary-card">
+                    <h4>Electricity Saved</h4>
+                    <p id="globalSaved" class="success-text">145.20 kWh</p>
+                </div>
+
+                <div class="summary-card">
+                    <h4>Financial Status (PHP)</h4>
+                    <p id="globalFinancial" class="success-text">
+                        + ₱2,032.80
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Campus Energy Consumption Analytics</h3>
+                    <canvas id="energyChart"></canvas>
+
+                </div>
+
+            </div>
+
+            <div class="audit-layout">
+
+                <div class="card audit-panel">
+
+                    <h3 class="danger-heading">
+                        Unattended Energy Waste Alerts
+                    </h3>
+
+                    <div id="wasteContainer" class="alert-list"></div>
+
+                </div>
+
+                <div class="card audit-panel">
+
+                    <h3 class="occupied-heading">
+                        Rooms Currently In Use
+                    </h3>
+
+                    <div id="occupiedContainer" class="alert-list"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ROOM VIEW -->
+        <div id="roomsView" class="view-container">
+
+            <div class="room-grid">
+
+                <!-- LEFT -->
+                <div class="panel-column">
+
+                    <div class="card warning-card">
+
+                        <h3 class="warning-heading">
+                            Room Operational Status
+                        </h3>
+
+                        <div class="switch-item white-bg">
+
+                            <span id="statusLabel" class="warning-text">
+                                Is Room Occupied / Active?
+                            </span>
+
+                            <label class="switch">
+                                <input
+                                    type="checkbox"
+                                    id="roomOccupiedToggle"
+                                    onchange="updateRoomState()"
+                                >
+                                <span class="slider"></span>
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                    <!-- FAN -->
+                    <div class="card">
+
+                        <h3>Electric Fan Control (Manual)</h3>
+
+                        <div class="switch-grid" id="fanControls"></div>
+
+                    </div>
+
+                    <!-- LIGHTS -->
+                    <div class="card">
+
+                        <h3>Lighting Fixtures & Media (Manual)</h3>
+
+                        <div class="switch-grid" id="lightControls"></div>
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="panel-column">
+
+                    <div class="card metrics-card">
+
+                        <h3 id="roomCardTitle">
+                            Live Hardware Sensor Data
+                        </h3>
+
+                        <div class="metric-group">
+
+                            <div class="metric-box">
+                                <div class="metric-label">Current Load</div>
+                                <div id="currentVal" class="metric-value">
+                                    0.00 A
+                                </div>
+                            </div>
+
+                            <div class="metric-box">
+                                <div class="metric-label">Power Draw</div>
+                                <div id="powerVal" class="metric-value">
+                                    0.00 kW
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="voltage-note">
+                            Target Voltage: 220V AC Grid Connection
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
